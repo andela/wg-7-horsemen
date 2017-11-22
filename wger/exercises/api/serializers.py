@@ -55,7 +55,15 @@ class ExerciseImageSerializer(serializers.ModelSerializer):
     '''
     class Meta:
         model = ExerciseImage
-
+        
+class ExerciseInfoSerializer(serializers.ModelSerializer):
+    '''
+    Exercise info serializer
+    '''
+    #img = ExerciseImageSerializer(many=True)
+    class Meta:
+        model = Exercise
+        depth = 1
 
 class ExerciseCommentSerializer(serializers.ModelSerializer):
     '''
