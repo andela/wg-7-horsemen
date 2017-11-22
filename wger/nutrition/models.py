@@ -32,6 +32,9 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 from django.conf import settings
+# Adding imports for signals and receiver
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 
 from wger.core.models import Language
 from wger.utils.constants import TWOPLACES
@@ -678,3 +681,16 @@ class MealItem(models.Model):
             nutritional_info[i] = Decimal(nutritional_info[i]).quantize(TWOPLACES)
 
         return nutritional_info
+
+@receiver(post_save, sender=NutritionPlan)
+@receiver(post_delete, sender=NutritionPlan)
+@receiver(post_save, sender=Meal)
+@receiver(post_delete, sender=Meal)
+@receiver(post_save, sender=MealItem)
+@receiver(post_delete, sender=MealItem)
+def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **kwargs):
+    '''
+    Delete the nutrition info dict from cache
+    '''
+    instance_id = kwargs['instance'].id
+    cache.delete(cache_mapper.get_nutrition_info_key(instance_id))
