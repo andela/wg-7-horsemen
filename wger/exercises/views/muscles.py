@@ -115,6 +115,6 @@ class MuscleDeleteView(WgerDeleteMixin, LoginRequiredMixin, PermissionRequiredMi
         Send some additional data to the template
         '''
         context = super(MuscleDeleteView, self).get_context_data(**kwargs)
-        context['title'] = _(u'Delete {0}?').format(self.object.name)
         context['form_action'] = reverse('exercise:muscle:delete', kwargs={'pk': self.kwargs['pk']})
+        context['title'] = _(u'Delete {0}?').format(self.object.name)
         return context
