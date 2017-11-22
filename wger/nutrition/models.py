@@ -113,21 +113,22 @@ class NutritionPlan(models.Model):
         if not result:
             use_metric = self.user.userprofile.use_metric
             unit = 'kg' if use_metric else 'lb'
-            result = {'total': {'energy': 0,
-                                'protein': 0,
-                                'carbohydrates': 0,
-                                'carbohydrates_sugar': 0,
-                                'fat': 0,
-                                'fat_saturated': 0,
-                                'fibres': 0,
-                                'sodium': 0},
-                    'percent': {'protein': 0,
-                                'carbohydrates': 0,
-                                'fat': 0},
-                    'per_kg': {'protein': 0,
-                                'carbohydrates': 0,
-                                'fat': 0},
-                    }
+            result = {
+                'total': {'energy': 0,
+                          'protein': 0,
+                          'carbohydrates': 0,
+                          'carbohydrates_sugar': 0,
+                          'fat': 0,
+                          'fat_saturated': 0,
+                          'fibres': 0,
+                          'sodium': 0},
+                'percent': {'protein': 0,
+                            'carbohydrates': 0,
+                            'fat': 0},
+                'per_kg': {'protein': 0,
+                           'carbohydrates': 0,
+                           'fat': 0},
+            }
 
             # Energy
             for meal in self.meal_set.select_related():
@@ -153,7 +154,7 @@ class NutritionPlan(models.Model):
             for key in result.keys():
                 for i in result[key]:
                     result[key][i] = Decimal(result[key][i]).quantize(TWOPLACES)
-            cache.set(cache_mapper.get_nutrition_info_key(self.id),result)
+            cache.set(cache_mapper.get_nutrition_info_key(self.id), result)
         return result
 
     def get_closest_weight_entry(self):
