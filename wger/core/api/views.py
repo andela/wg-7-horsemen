@@ -73,6 +73,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 class UserRegistrationViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
+    http_method_names = ['post']
 
     def create(self, request, *args, **kwargs):
         serializer = UserRegistrationSerializer(data=request.data)
