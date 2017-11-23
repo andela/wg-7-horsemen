@@ -122,6 +122,11 @@ class UserProfile(models.Model):
     '''
     Flag to mark a temporary user (demo account)
     '''
+    created_by = models.ForeignKey(User,
+                                   editable=True,
+                                   null=True,
+                                   blank=True,
+                                   related_name='+')
 
     #
     # User preferences
