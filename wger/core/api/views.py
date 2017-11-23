@@ -102,6 +102,13 @@ class UserRegistrationViewSet(viewsets.ModelViewSet):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(request.data)
+        serializer.save()
+
 
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
