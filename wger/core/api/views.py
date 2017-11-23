@@ -109,6 +109,15 @@ class UserRegistrationViewSet(viewsets.ModelViewSet):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+
+            new_user = User.objects.get(username=request.data['username'])
+            new_user.set_password(request.data['password'])
+            new_user.save()
+
+            new_user_profile = UserProfile.objects.get(user=new_user)
+            new_user_profile.created_by = request.user
+            new_user_profile.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status.HTTP_400_BAD_REQUEST)
 
