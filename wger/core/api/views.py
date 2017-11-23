@@ -35,7 +35,7 @@ from wger.core.api.serializers import (
     RepetitionUnitSerializer,
     WeightUnitSerializer
 )
-from wger.core.api.serializers import UserprofileSerializer
+from wger.core.api.serializers import UserprofileSerializer, UserRegistrationSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
 
 
@@ -68,6 +68,16 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
         user = self.get_object().user
         return Response(UsernameSerializer(user).data)
+
+
+class UserRegistrationViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(request.data)
+        serializer.save()
+
 
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
@@ -121,3 +131,4 @@ class WeightUnitViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = WeightUnitSerializer
     ordering_fields = '__all__'
     filter_fields = ('name', )
+
