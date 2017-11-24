@@ -31,6 +31,15 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('username', nargs='+', type=str)
 
+        # optional arguments
+        parser.add_argument(
+            '--disable',
+            action='store_true',
+            dest='disable',
+            default=False,
+            help='Disable permission to create users via API'
+        )
+
     def handle(self, **options):
 
         for username in options['username']:
@@ -41,8 +50,14 @@ class Command(BaseCommand):
 
             permission1 = Permission.objects.get(codename='add_user')
             permission2 = Permission.objects.get(codename='change_user')
-            user.user_permissions.add(permission1)
-            user.user_permissions.add(permission2)
+
+            if options['disable']:
+                user.user_permissions.remove(permission1)
+                user.user_permissions.remove(permission2)
+            else:
+                user.user_permissions.add(permission1)
+                user.user_permissions.add(permission2)
+
             user.save()
 
         self.stdout.write("User permissions have been updated")
