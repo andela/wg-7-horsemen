@@ -71,6 +71,9 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
 
 class UserRegistrationViewSet(viewsets.ModelViewSet):
+    '''
+    An endpoint to Register a user
+    '''
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
     http_method_names = ['post']
