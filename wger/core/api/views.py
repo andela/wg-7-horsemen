@@ -93,7 +93,7 @@ class UserRegistrationViewSet(viewsets.ModelViewSet):
             new_user_profile.save()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
