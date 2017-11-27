@@ -67,6 +67,6 @@ class RegistrationTestCase(WorkoutManagerTestCase):
         response = self.client.post(
             '/api/v2/register/',
             data=registration_data,
-            headers={'Authentication': 'Token ' + str(self.api_key)}
+            headers={'Authorization': 'Token ' + str(self.api_key)}
         )
         self.assertEqual(response.status_code, 400)
