@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from wger.settings_global import *
-
+import os
 # Use 'DEBUG = True' to get more details for server errors
 DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = True
