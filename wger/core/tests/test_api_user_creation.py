@@ -44,6 +44,9 @@ class RegistrationTestCase(WorkoutManagerTestCase):
         self.client.get(reverse('core:user:api-key'))
         self.api_key = Token.objects.get(user=user)
 
+    def tearDown(self):
+        pass
+
     def test_api_register(self):
 
         registration_data = {'username': 'myusername',
