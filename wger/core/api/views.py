@@ -26,7 +26,8 @@ from wger.core.models import (
     DaysOfWeek,
     License,
     RepetitionUnit,
-    WeightUnit)
+    WeightUnit,
+    ApiUser)
 from wger.core.api.serializers import (
     UsernameSerializer,
     LanguageSerializer,
