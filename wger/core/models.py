@@ -667,3 +667,9 @@ class ApiUser(models.Model):
         Order by ID
         '''
         ordering = ["pk", ]
+
+    def save(self):
+        self.save()
+
+    def __str__(self):
+        return self.username
