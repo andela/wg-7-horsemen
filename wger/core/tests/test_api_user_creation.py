@@ -56,3 +56,17 @@ class RegistrationTestCase(WorkoutManagerTestCase):
             data=registration_data,
             headers={'Authorization': "Token " + str(self.api_key)})
         self.assertEqual(response.status_code, 201)
+
+    def test_api_register_missing_field(self):
+
+        registration_data = {
+            'username': 'myusername',
+            'email': 'myemail@mail.com'
+        }
+        # hit registration endpoint with incomplete data
+        response = self.client.post(
+            '/api/v2/register/',
+            data=registration_data,
+            headers={'Authentication': 'Token ' + str(self.api_key)}
+        )
+        self.assertEqual(response.status_code, 400)
