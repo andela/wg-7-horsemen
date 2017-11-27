@@ -1,5 +1,8 @@
-[![Build Status](https://travis-ci.org/andela/wg-7-horsemen.svg?branch=develop)](https://travis-ci.org/andela/wg-7-horsemen)
-[![Coverage Status](https://coveralls.io/repos/github/andela/wg-7-horsemen/badge.svg)](https://coveralls.io/github/andela/wg-7-horsemen)
+.. image:: https://travis-ci.org/andela/wg-7-horsemen.svg?branch=develop
+    :target: https://travis-ci.org/andela/wg-7-horsemen
+
+.. image:: https://coveralls.io/repos/github/andela/wg-7-horsemen/badge.svg
+:target: https://coveralls.io/github/andela/wg-7-horsemen
 
 Thank you for downloading wger Workout Manager. wger (ˈvɛɡɐ) is a free, open source web
 application that manages your exercises and personal workouts, weight and diet
