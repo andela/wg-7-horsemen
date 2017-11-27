@@ -158,6 +158,7 @@ class NutritionPlan(models.Model):
                 for i in result[key]:
                     result[key][i] = Decimal(result[key][i]).quantize(TWOPLACES)
             cache.set(cache_mapper.get_nutrition_info_key(self.id), result)
+            cache.close()
         return result
 
     def get_closest_weight_entry(self):
@@ -692,5 +693,4 @@ def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **k
     '''
     Delete the nutrition info dict from cache
     '''
-    instance_id = kwargs['instance'].id
-    cache.delete(cache_mapper.get_nutrition_info_key(instance_id))
+    cache.clear()
