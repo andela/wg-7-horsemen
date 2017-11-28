@@ -1,7 +1,5 @@
 .. image:: https://travis-ci.org/andela/wg-7-horsemen.svg?branch=develop
-    :target: https://travis-ci.org/andela/wg-7-horsemen
-
-.. image:: https://coveralls.io/repos/github/andela/wg-7-horsemen/badge.svg?branch=develop
+    :target: https://travis-ci.org/andela/wg-7-horsemen    .. image:: https://coveralls.io/repos/github/andela/wg-7-horsemen/badge.svg?branch=develop
 :target: https://coveralls.io/github/andela/wg-7-horsemen?branch=develop
 
 
