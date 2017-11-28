@@ -666,14 +666,8 @@ class ApiUser(models.Model):
         '''
         Order by ID
         '''
-<<<<<<< HEAD
-        ordering = ["pk", ] 
-=======
-        ordering = ["pk", ]
 
-    def save(self):
-        self.save()
->>>>>>> Add a save method to the ApiUser method
+        ordering = ["pk", ]
 
     def __str__(self):
         return self.username
