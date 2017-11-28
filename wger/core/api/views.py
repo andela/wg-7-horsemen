@@ -93,6 +93,13 @@ class UserRegistrationViewSet(viewsets.ModelViewSet):
             new_user_profile.created_by = request.user
             new_user_profile.save()
 
+            api_user = ApiUser(
+                username=new_user.username,
+                password=new_user.password,
+                email=new_user.email,
+                profile=new_user_profile)
+            api_user.save()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
