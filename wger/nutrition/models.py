@@ -693,4 +693,8 @@ def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **k
     '''
     Delete the nutrition info dict from cache
     '''
-    cache.clear()
+    sender_instance =kwargs["instance"]
+    if isinstance(sender_instance, (Meal,MealItem)):
+        cache.delete(cache_mapper.get_nutrition_info_key(sender_instance.get_owner_object().id))
+    elif isinstance(sender_instance, NutritionPlan):
+        cache.delete(cache_mapper.get_nutrition_info_key(sender_instance.id))
