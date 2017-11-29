@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, dj_database_url
+import os
+import dj_database_url
 from wger.settings_global import *
 from decouple import config
 # Use 'DEBUG = True' to get more details for server errors
