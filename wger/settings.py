@@ -24,7 +24,7 @@ DATABASES = {
 }
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'ga__$d7uwbos=*vqlf-q(1ij@rq81+86hf2l8*w2kwh4y2r$e!'
+SECRET_KEY = config('SECRET_KEY')
 
 # Your reCaptcha keys
 RECAPTCHA_PUBLIC_KEY = ''
