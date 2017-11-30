@@ -182,4 +182,3 @@ class WeightUnitViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = WeightUnitSerializer
     ordering_fields = '__all__'
     filter_fields = ('name', )
-
