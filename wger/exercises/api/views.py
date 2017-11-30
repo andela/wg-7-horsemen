@@ -79,6 +79,7 @@ class ExerciseViewSet(viewsets.ModelViewSet):
         obj.set_author(self.request)
         obj.save()
 
+
 @api_view(['GET'])
 def search(request):
     '''
@@ -209,6 +210,7 @@ class MuscleViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     filter_fields = ('name',
                      'is_front')
+
 
 class ExerciseInfoView(viewsets.ModelViewSet):
     '''
