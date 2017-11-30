@@ -16,7 +16,7 @@
 # along with Workout Manager.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib.auth.models import User
-from rest_framework import viewsets
+from rest_framework import viewsets, status, permissions, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import detail_route
 
@@ -26,7 +26,8 @@ from wger.core.models import (
     DaysOfWeek,
     License,
     RepetitionUnit,
-    WeightUnit)
+    WeightUnit,
+    ApiUser)
 from wger.core.api.serializers import (
     UsernameSerializer,
     LanguageSerializer,
@@ -35,7 +36,7 @@ from wger.core.api.serializers import (
     RepetitionUnitSerializer,
     WeightUnitSerializer
 )
-from wger.core.api.serializers import UserprofileSerializer
+from wger.core.api.serializers import UserprofileSerializer, UserRegistrationSerializer
 from wger.utils.permissions import UpdateOnlyPermission, WgerPermission
 
 
@@ -68,6 +69,66 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
         user = self.get_object().user
         return Response(UsernameSerializer(user).data)
+
+
+class UserRegistrationViewSet(viewsets.ModelViewSet):
+    '''
+    An endpoint to Register a user
+    '''
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+    http_method_names = ['post']
+    permission_classes = [permissions.DjangoModelPermissions]
+
+    def create(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            new_user = User.objects.get(username=request.data['username'])
+            new_user.set_password(request.data['password'])
+            new_user.save()
+
+            new_user_profile = UserProfile.objects.get(user=new_user)
+            new_user_profile.created_by = request.user
+            new_user_profile.save()
+
+            api_user = ApiUser(
+                username=new_user.username,
+                password=new_user.password,
+                email=new_user.email,
+                profile=new_user_profile)
+            api_user.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    queryset = User.objects.all()
+    serializer_class = UserRegistrationSerializer
+    http_method_names = ['post']
+    permission_classes = [permissions.DjangoModelPermissions]
+
+    def create(self, request, *args, **kwargs):
+        serializer = UserRegistrationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+
+            new_user = User.objects.get(username=request.data['username'])
+            new_user.set_password(request.data['password'])
+            new_user.save()
+
+            new_user_profile = UserProfile.objects.get(user=new_user)
+            new_user_profile.created_by = request.user
+            new_user_profile.save()
+
+            api_user = ApiUser(
+                username=new_user.username,
+                password=new_user.password,
+                email=new_user.email,
+                profile=new_user_profile)
+            api_user.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class LanguageViewSet(viewsets.ReadOnlyModelViewSet):
