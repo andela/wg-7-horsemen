@@ -32,8 +32,7 @@ from wger.exercises.api.serializers import (
     ExerciseImageSerializer,
     ExerciseCategorySerializer,
     EquipmentSerializer,
-    ExerciseCommentSerializer,
-    ExerciseInfoSerializer
+    ExerciseCommentSerializer
 )
 from wger.exercises.models import (
     Exercise,
@@ -45,8 +44,6 @@ from wger.exercises.models import (
 )
 from wger.utils.language import load_item_languages, load_language
 from wger.utils.permissions import CreateOnlyPermission
-
-from itertools import chain
 
 
 class ExerciseViewSet(viewsets.ModelViewSet):
@@ -210,25 +207,3 @@ class MuscleViewSet(viewsets.ReadOnlyModelViewSet):
     ordering_fields = '__all__'
     filter_fields = ('name',
                      'is_front')
-
-
-class ExerciseInfoView(viewsets.ModelViewSet):
-    '''
-    API endpoint to collect all exercise info
-    '''
-    queryset = Exercise.objects.all()
-    serializer_class = ExerciseInfoSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, CreateOnlyPermission)
-    ordering_fields = '__all__'
-    filter_fields = ('category',
-                     'creation_date',
-                     'description',
-                     'language',
-                     'muscles',
-                     'muscles_secondary',
-                     'status',
-                     'name',
-                     'equipment',
-                     'license',
-                     'license_author'
-                     )
