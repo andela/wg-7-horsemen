@@ -100,6 +100,7 @@ router.register(r'daysofweek', core_api_views.DaysOfWeekViewSet, base_name='days
 router.register(r'license', core_api_views.LicenseViewSet, base_name='license')
 router.register(r'setting-repetitionunit', core_api_views.RepetitionUnitViewSet, base_name='setting-repetition-unit')
 router.register(r'setting-weightunit', core_api_views.WeightUnitViewSet, base_name='setting-weight-unit')
+router.register(r'register', core_api_views.UserRegistrationViewSet, base_name='register')
 
 # Exercises app
 router.register(r'exercise', exercises_api_views.ExerciseViewSet, base_name='exercise')
@@ -108,6 +109,7 @@ router.register(r'exercisecategory', exercises_api_views.ExerciseCategoryViewSet
 router.register(r'exerciseimage', exercises_api_views.ExerciseImageViewSet, base_name='exerciseimage')
 router.register(r'exercisecomment', exercises_api_views.ExerciseCommentViewSet, base_name='exercisecomment')
 router.register(r'muscle', exercises_api_views.MuscleViewSet, base_name='muscle')
+router.register(r'exerciseinfo', exercises_api_views.ExerciseInfoView, base_name='exerciseinfo')
 
 # Nutrition app
 router.register(r'ingredient', nutrition_api_views.IngredientViewSet, base_name='api-ingredient')
