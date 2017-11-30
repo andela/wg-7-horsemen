@@ -125,6 +125,8 @@ class MealItemForm(forms.ModelForm):
                                          required=False)
     ingredient = forms.ModelChoiceField(queryset=Ingredient.objects.all(),
                                         widget=forms.HiddenInput)
+    ingredient_consumed = forms.CharField(max_length=2000,
+                                          required=False)                                     
 
     class Meta:
         model = MealItem
