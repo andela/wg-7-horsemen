@@ -36,6 +36,7 @@ def capitalize_name(apps, schema_editor):
         exercise.name = capitalize(exercise.name_original)
         exercise.save()
 
+
 class Migration(migrations.Migration):
 
     dependencies = [

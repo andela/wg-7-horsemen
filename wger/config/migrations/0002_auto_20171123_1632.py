@@ -15,6 +15,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='languageconfig',
             name='item',
-            field=models.CharField(choices=[('1', 'Exercises'), ('2', 'Ingredients')], editable=False, max_length=2),
+            field=models.CharField(
+                choices=[
+                    ('1',
+                     'Exercises'),
+                    ('2',
+                     'Ingredients')],
+                editable=False,
+                max_length=2),
         ),
     ]

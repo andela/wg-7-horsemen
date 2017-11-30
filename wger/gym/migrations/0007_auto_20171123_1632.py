@@ -14,21 +14,38 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='gym',
-            options={'ordering': ['name'], 'permissions': (('gym_trainer', 'Trainer: can see the users for a gym'), ('manage_gym', 'Admin: can manage users for a gym'), ('manage_gyms', 'Admin: can administrate the different gyms'))},
+            options={
+                'ordering': ['name'],
+                'permissions': (
+                    ('gym_trainer',
+                     'Trainer: can see the users for a gym'),
+                    ('manage_gym',
+                     'Admin: can manage users for a gym'),
+                    ('manage_gyms',
+                     'Admin: can administrate the different gyms'))},
         ),
         migrations.AlterField(
             model_name='contract',
             name='options',
-            field=models.ManyToManyField(blank=True, to='gym.ContractOption', verbose_name='Options'),
+            field=models.ManyToManyField(
+                blank=True,
+                to='gym.ContractOption',
+                verbose_name='Options'),
         ),
         migrations.AlterField(
             model_name='gymadminconfig',
             name='overview_inactive',
-            field=models.BooleanField(default=True, help_text='Receive email overviews of inactive members', verbose_name='Overview of inactive members'),
+            field=models.BooleanField(
+                default=True,
+                help_text='Receive email overviews of inactive members',
+                verbose_name='Overview of inactive members'),
         ),
         migrations.AlterField(
             model_name='gymconfig',
             name='weeks_inactive',
-            field=models.PositiveIntegerField(default=4, help_text='Number of weeks since the last time a user logged his presence to be considered inactive', verbose_name='Reminder of inactive members'),
+            field=models.PositiveIntegerField(
+                default=4,
+                help_text='Number of weeks since the last time a user logged his presence to be considered inactive',
+                verbose_name='Reminder of inactive members'),
         ),
     ]

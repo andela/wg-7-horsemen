@@ -15,16 +15,36 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ingredient',
             name='status',
-            field=models.CharField(choices=[('1', 'Pending'), ('2', 'Accepted'), ('3', 'Declined'), ('4', 'Submitted by administrator'), ('5', 'System ingredient')], default='1', editable=False, max_length=2),
+            field=models.CharField(
+                choices=[
+                    ('1',
+                     'Pending'),
+                    ('2',
+                     'Accepted'),
+                    ('3',
+                     'Declined'),
+                    ('4',
+                     'Submitted by administrator'),
+                    ('5',
+                     'System ingredient')],
+                default='1',
+                editable=False,
+                max_length=2),
         ),
         migrations.AlterField(
             model_name='meal',
             name='order',
-            field=models.IntegerField(blank=True, editable=False, verbose_name='Order'),
+            field=models.IntegerField(
+                blank=True,
+                editable=False,
+                verbose_name='Order'),
         ),
         migrations.AlterField(
             model_name='mealitem',
             name='order',
-            field=models.IntegerField(blank=True, editable=False, verbose_name='Order'),
+            field=models.IntegerField(
+                blank=True,
+                editable=False,
+                verbose_name='Order'),
         ),
     ]
