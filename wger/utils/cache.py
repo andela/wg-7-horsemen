@@ -128,4 +128,5 @@ class CacheKeyMapper(object):
         '''
         return self.NUTRITION_INFO_CACHE_KEY.format(self.get_pk(param))
 
+
 cache_mapper = CacheKeyMapper()

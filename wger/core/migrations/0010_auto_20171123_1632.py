@@ -18,11 +18,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='userprofile',
             name='created_by',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='+',
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='license',
             name='full_name',
-            field=models.CharField(help_text='If a license has been localized, e.g. the Creative Commons licenses for the different countries, add them as separate entries here.', max_length=60, verbose_name='Full name'),
+            field=models.CharField(
+                help_text='If a license has been localized, e.g. the Creative Commons licenses for the different countries, add them as separate entries here.',
+                max_length=60,
+                verbose_name='Full name'),
         ),
     ]

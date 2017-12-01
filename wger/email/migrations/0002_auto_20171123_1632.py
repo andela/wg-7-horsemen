@@ -15,11 +15,16 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='log',
-            options={'ordering': ['-date']},
+            options={
+                'ordering': ['-date']},
         ),
         migrations.AlterField(
             model_name='log',
             name='gym',
-            field=models.ForeignKey(editable=False, on_delete=django.db.models.deletion.CASCADE, related_name='email_log', to='gym.Gym'),
+            field=models.ForeignKey(
+                editable=False,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name='email_log',
+                to='gym.Gym'),
         ),
     ]
