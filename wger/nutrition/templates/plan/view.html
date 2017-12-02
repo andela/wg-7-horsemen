@@ -116,12 +116,21 @@ function wgerCustomModalInit()
                     {% for consumed in meal.mealconsumed_set.select_related %}
                         {{ consumed.ingredient_consumed }}
 
+                        {% if is_owner %}
+                        <span class="editoptions">
+                            <a href="{% url 'nutrition:meal_consumed:edit' consumed.id %}"
+                               title="{% trans 'Edit' %}"
+                               class="wger-modal-dialog edit-meal edit-mealconsumed">
+                                <span class="{% fa_class 'pencil-square-o' %}"></span></a>
+                        </span>
+                        {% endif %}
+
                         {% empty %}
                         {% if is_owner %}
                         <span class="editoptions">
                                 <a href="{% url 'nutrition:meal_consumed:add' meal.id %}"
                                    title="{% trans 'Add Meal Consumed' %}"
-                                   class="wger-modal-dialog edit-meal edit-mealitem">
+                                   class="wger-modal-dialog edit-meal edit-mealconsumed">
                                     <span class="{% fa_class 'plus' %}"></span></a>
                             </span>
                         {% endif %}
