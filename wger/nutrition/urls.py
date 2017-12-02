@@ -98,6 +98,9 @@ patterns_meal_consumed = [
     url(r'^(?P<pk>\d+)/edit/$',
         login_required(meal_consumed.MealConsumedEditView.as_view()),
         name='edit'),
+    url(r'^(?P<meal_consumed_id>\d+)/delete/$',
+        meal_consumed.delete_meal_consumed,
+        name='delete'),    
 ]
 
 # sub patterns for ingredient
