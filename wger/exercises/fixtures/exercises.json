@@ -998,7 +998,8 @@
             "category": 8,
             "uuid": "ff454f5a-70ee-40fb-9200-5e7e42960ef0",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Hammercurls"
@@ -2669,7 +2670,9 @@
             "uuid": "61271a8e-6a00-4898-8dc3-ea9ef913f25e",
             "muscles": [
                 2,
-                9
+                9,
+                17,
+                19
             ],
             "license": 1,
             "name": "Upright row, SZ-bar"
@@ -2880,7 +2883,8 @@
             "category": 8,
             "uuid": "5baf40e5-ea3c-4f8d-b60a-d294ee2de55b",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Hammercurls on cable"
@@ -3099,7 +3103,9 @@
             "category": 13,
             "uuid": "5345766a-c092-457a-aa21-8ee6ffa855d4",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 1,
             "name": "Lateral raises"
@@ -6214,7 +6220,8 @@
             "uuid": "97d7eba2-681f-4b14-8e78-7d9b5865d336",
             "muscles": [
                 2,
-                9
+                9,
+                17
             ],
             "license": 2,
             "name": "Upright Row w/ Dumbbells"
