@@ -151,7 +151,7 @@ class MealItemForm(forms.ModelForm):
 
 class MealConsumedForm(forms.ModelForm):
    
-    ingredient_consumed = forms.CharField(max_length=2000)                                     
+    ingredient_consumed = forms.CharField(max_length=2000, widget=forms.Textarea())
 
     class Meta:
         model = MealConsumed
