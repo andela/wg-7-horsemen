@@ -118,6 +118,10 @@ function wgerCustomModalInit()
 
                         {% if is_owner %}
                         <span class="editoptions">
+                            <a href="{% url 'nutrition:meal_consumed:delete' consumed.id %}"
+                                title="{% trans 'Delete' %}"
+                                class="delete-mealitem">
+                                <span class="{% fa_class 'trash' %}"></span></a>
                             <a href="{% url 'nutrition:meal_consumed:edit' consumed.id %}"
                                title="{% trans 'Edit' %}"
                                class="wger-modal-dialog edit-meal edit-mealconsumed">
