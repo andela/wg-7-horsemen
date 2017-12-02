@@ -85,3 +85,21 @@ class MealConsumedEditView(WgerFormMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('nutrition:plan:view', kwargs={'id': self.object.meal.plan.id})
+
+
+@login_required
+def delete_meal_consumed(request, meal_consumed_id):
+    '''
+    Deletes the meal consumed with the given ID
+    '''
+
+    # select the meal consumed
+    meal_consumed = get_object_or_404(MealConsumed, pk=meal_consumed_id)
+    plan = meal_consumed.meal.plan
+
+    #  Delete if the user is the owner
+    if plan.user == request.user:
+        meal_consumed.delete()
+        return HttpResponseRedirect(reverse('nutrition:plan:view', kwargs={'id': plan.id}))
+    else:
+        return HttpResponseForbidden()    
