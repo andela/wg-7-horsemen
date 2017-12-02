@@ -711,7 +711,7 @@ def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **k
 @python_2_unicode_compatible
 class MealConsumed(models.Model):
     '''
-    An item (component) of a meal
+    An consumed of a meal for a nutrition plan
     '''
 
     meal = models.ForeignKey(Meal,
