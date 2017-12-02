@@ -599,13 +599,7 @@ class MealItem(models.Model):
                                  max_digits=6,
                                  verbose_name=_('Amount'),
                                  validators=[MinValueValidator(1),
-                                             MaxValueValidator(1000)])
-    ingredient_consumed = models.TextField(max_length=2000,
-                                           blank=True,
-                                           null=True,
-                                           default='something',
-                                           verbose_name=_('Ingredient Consumed'),
-                                           help_text=_('What was actually consumed by a user'))                                     
+                                             MaxValueValidator(1000)])                                   
 
     def __str__(self):
         '''
