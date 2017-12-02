@@ -70,3 +70,18 @@ class MealConsumedCreateView(WgerFormMixin, CreateView):
         form.instance.meal = self.meal
         form.instance.order = 1
         return super(MealConsumedCreateView, self).form_valid(form)
+
+
+class MealConsumedEditView(WgerFormMixin, UpdateView):
+    '''
+    Generic view to update an existing meal consumed
+    '''
+
+    model = MealConsumed
+    form_class = MealConsumedForm
+    title = ugettext_lazy('Edit meal item')
+    form_action_urlname = 'nutrition:meal_consumed:edit'
+    template_name = 'meal_consumed/form.html'
+
+    def get_success_url(self):
+        return reverse('nutrition:plan:view', kwargs={'id': self.object.meal.plan.id})
