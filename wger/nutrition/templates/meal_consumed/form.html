@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load wger_extras %}
+
+
+{% block title %}{% trans "Add/Edit meal consumed" %}{% endblock %}
+
+{% block content %}
+<form action="{{ form_action }}"
+      method="post"
+      class="form-horizontal">
+    {% csrf_token %}
+    {% render_form_errors form %}
+    
+    {% render_form_field form.ingredient_consumed %}
+    {% render_form_submit submit_text %}
+</form>
+{% endblock %}
