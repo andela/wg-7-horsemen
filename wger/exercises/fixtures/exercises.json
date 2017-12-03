@@ -1845,7 +1845,8 @@
             "category": 8,
             "uuid": "d147a6c2-ce64-424b-baf3-4ca841a51512",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Dumbbells on scott machine"
@@ -2537,7 +2538,8 @@
             "category": 13,
             "uuid": "9926e18f-4e2b-4c20-9477-9bfb08d229bc",
             "muscles": [
-                2
+                2,
+                17
             ],
             "license": 1,
             "name": "Shoulder press, barbell"
@@ -2579,7 +2581,8 @@
             "category": 13,
             "uuid": "1df6a1b5-7bd2-402f-9d5e-94f9ed6d8b54",
             "muscles": [
-                2
+                2,
+                17
             ],
             "license": 1,
             "name": "Shoulder press, dumbbells"
@@ -2599,7 +2602,9 @@
             "category": 13,
             "uuid": "8715a96e-c8a2-458a-b023-4ea7d82fdab8",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 1,
             "name": "Butterfly reverse"
@@ -3125,7 +3130,8 @@
             "category": 13,
             "uuid": "79a3a34c-262f-4cae-b827-b5a85b11b860",
             "muscles": [
-                2
+                2,
+                19
             ],
             "license": 1,
             "name": "Lateral raises on cable, one armed"
@@ -4205,7 +4211,8 @@
             "category": 8,
             "uuid": "438678dc-5a62-4496-9458-341af0616626",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 1,
             "name": "Reverse bar curl"
@@ -5302,7 +5309,9 @@
             "category": 13,
             "uuid": "a7e15f4f-a7e6-4c0c-9bcb-ef3de90201aa",
             "muscles": [
-                2
+                2,
+                17,
+                19
             ],
             "license": 1,
             "name": "Cable External Rotation"
@@ -5510,7 +5519,8 @@
             "category": 8,
             "uuid": "dfa090e4-77ae-40ed-86c0-4696fe93dcf1",
             "muscles": [
-                13
+                13,
+                20
             ],
             "license": 1,
             "name": "Dumbbell Concentration Curl"
@@ -5941,7 +5951,8 @@
             "category": 8,
             "uuid": "fa56d30a-7a8f-4084-aa68-46bd52f97959",
             "muscles": [
-                1
+                1,
+                20
             ],
             "license": 2,
             "name": "Dumbbell Incline Curl"
@@ -6095,7 +6106,8 @@
             "uuid": "7738fb4e-8f17-4aeb-84ef-2ee3e12eaff7",
             "muscles": [
                 1,
-                13
+                13,
+                20
             ],
             "license": 2,
             "name": "Z Curls"
@@ -6118,7 +6130,8 @@
             "uuid": "aba7ba7a-6ff0-47d4-ab66-8952e21e38c5",
             "muscles": [
                 2,
-                9
+                9,
+                17
             ],
             "license": 2,
             "name": "Lateral-to-Front Raises"
@@ -6152,7 +6165,9 @@
                 6,
                 3,
                 15,
-                5
+                5,
+                17,
+                19
             ],
             "license": 2,
             "name": "Bear Walk"
