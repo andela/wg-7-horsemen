@@ -717,3 +717,9 @@ class MealConsumed(models.Model):
                                            default='something',
                                            verbose_name=_('Ingredient Consumed'),
                                            help_text=_('What was actually consumed by a user'))
+                                           
+    def get_owner_object(self):
+        '''
+        Returns the object that has owner information
+        '''
+        return self.meal.plan
