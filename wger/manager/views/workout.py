@@ -121,6 +121,46 @@ def view(request, pk):
     return render(request, 'workout/view.html', template_data)
 
 
+def export(request, pk):
+    '''
+    Export a workout in json format
+    '''
+    workout = get_object_or_404(Workout, pk=pk)
+    user = workout.user
+    is_owner = request.user == user
+
+    if not is_owner and not user.userprofile.ro_access:
+        return HttpResponseForbidden()
+
+    # Process request
+    if request.method == 'POST':
+        workout_form = WorkoutExportForm(request.POST)
+
+        if workout_form.is_valid():
+            export_name = workout_form.cleaned_data['name']
+            if export_name == "":
+                export_name = "workout"
+            data = serializers.serialize('json', Workout.objects.filter(pk=pk))
+            response = HttpResponse(data, content_type='application/force-download')
+            response['Content-Disposition'] = 'attachment; filename="{}.json"'.format(export_name)
+
+            return response
+
+    else:
+        workout_export_form = WorkoutExportForm({'name': ''})
+
+        template_data = {}
+        template_data.update(csrf(request))
+        template_data['title'] = _('Export Workout')
+        template_data['form'] = workout_export_form
+        template_data['form_action'] = reverse('manager:workout:export', kwargs={'pk': workout.id})
+        template_data['form_fields'] = [workout_export_form['name']]
+        template_data['submit_text'] = _('Export')
+        template_data['extend_template'] = 'base_empty.html' if request.is_ajax() else 'base.html'
+
+        return render(request, 'export.html', template_data)
+
+
 @login_required
 def copy_workout(request, pk):
     '''
