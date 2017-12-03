@@ -73,8 +73,8 @@ class WorkoutForm(ModelForm):
 
 class WorkoutExportForm(Form):
     name = CharField(max_length=100,
-                        help_text=_('Give a title to this workout export.'),
-                        required=False)
+                     help_text=_('Give a title to this workout export.'),
+                     required=False)
 
 
 class WorkoutImportForm(Form):
