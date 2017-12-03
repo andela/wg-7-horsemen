@@ -19,13 +19,14 @@ import uuid
 import datetime
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden, HttpResponse
 from django.template.context_processors import csrf
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.translation import ugettext_lazy, ugettext as _
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DeleteView, UpdateView
+from django.core import serializers
 
 from wger.core.models import (
     RepetitionUnit,
@@ -41,7 +42,8 @@ from wger.manager.models import (
 from wger.manager.forms import (
     WorkoutForm,
     WorkoutSessionHiddenFieldsForm,
-    WorkoutCopyForm
+    WorkoutCopyForm,
+    WorkoutExportForm
 )
 from wger.utils.generic_views import (
     WgerFormMixin,
