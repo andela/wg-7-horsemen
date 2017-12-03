@@ -20,7 +20,7 @@ from wger.core.tests.base_testcase import WorkoutManagerEditTestCase
 from wger.nutrition.models import MealConsumed
 
 
-class EditMealItemUnitTestCase(WorkoutManagerEditTestCase):
+class EditMealConsumedUnitTestCase(WorkoutManagerEditTestCase):
     '''
     Tests editing a meal consumed
     '''
@@ -38,4 +38,4 @@ class AddMealConsumedUnitTestCase(WorkoutManagerAddTestCase):
 
     object_class = MealConsumed
     url = reverse('nutrition:meal_consumed:add', kwargs={'meal_id': 3})
-    data = {'ingredient_consumed': 'eggs'}
+    data = {'ingredient_consumed': 'eggs and bacon'}
