@@ -26,6 +26,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.translation import ugettext_lazy, ugettext as _
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.views.generic import DeleteView, UpdateView
 from django.core import serializers
 
@@ -148,6 +149,7 @@ def export(request, pk):
             response = HttpResponse(data, content_type='application/force-download')
             response['Content-Disposition'] = 'attachment; filename="{}.json"'.format(export_name)
 
+            messages.success(request, _('Successfully exported!'))
             return response
 
     else:
@@ -186,6 +188,7 @@ def export_all(request):
             response = HttpResponse(data, content_type='application/force-download')
             response['Content-Disposition'] = 'attachment; filename="{}.json"'.format(export_name)
 
+            messages.success(request, _('Successfully exported all workouts!'))
             return response
 
     else:
@@ -218,12 +221,22 @@ def wk_import(request):
 
         if workout_form.is_valid():
             import_file = request.FILES['import_file']
-            # json_data = open(import_file) #.read() #alternative for.load
-            data1 = json.load(import_file) # deserialises it
-            # Imported_workouts = json.dumps(data1) # json formatted string
+            try:
+                data1 = json.load(import_file)
+            except Exception as e:
+                messages.warning(request, _('Error!! could not import from selected file!'))
+                return HttpResponseRedirect(reverse('manager:workout:wk_import'))
+            exceptions = 0
+            number_of_imports = len(data1)
+
             for a_workout in data1:
-                print(a_workout['pk'])
-                workout = get_object_or_404(Workout, pk=a_workout['pk'])
+
+                try:
+                    workout = get_object_or_404(Workout, pk=a_workout['pk'])
+                except Exception as e:
+                    exceptions += 1
+                    number_of_imports -= 1
+                    break
                 # export workout
                 days = workout.day_set.all()
 
@@ -269,8 +282,9 @@ def wk_import(request):
                                 setting_export.pk = None
                                 setting_export.set = current_set_export
                                 setting_export.save()
-
+            messages.success(request, _('Successfully imported {} workout(s), with {} exception(s)!'.format(number_of_imports, exceptions)))
             return HttpResponseRedirect(reverse('manager:workout:overview'))
+        messages.warning(request, _('Invalid import!'))
         return HttpResponseRedirect(reverse('manager:workout:wk_import'))
 
     else:
@@ -281,7 +295,6 @@ def wk_import(request):
         template_data['title'] = _('Import Workout')
         template_data['form'] = workout_import_form
         template_data['form_action'] = reverse('manager:workout:wk_import')
-        # template_data['form_fields'] = [workout_import_form['name']]
         template_data['submit_text'] = _('Import')
         template_data['extend_template'] = 'base_empty.html' if request.is_ajax() else 'base.html'
 
