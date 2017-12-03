@@ -282,7 +282,9 @@ def wk_import(request):
                                 setting_export.pk = None
                                 setting_export.set = current_set_export
                                 setting_export.save()
-            messages.success(request, _('Successfully imported {} workout(s), with {} exception(s)!'.format(number_of_imports, exceptions)))
+            messages.success(request, _('Successfully imported {} workout(s)\
+                                        with {} exception(s)!'.format(number_of_imports, exceptions)
+                                        ))
             return HttpResponseRedirect(reverse('manager:workout:overview'))
         messages.warning(request, _('Invalid import!'))
         return HttpResponseRedirect(reverse('manager:workout:wk_import'))
