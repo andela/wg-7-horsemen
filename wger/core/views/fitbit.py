@@ -105,14 +105,14 @@ class FitBit:
             'Authorization': 'Bearer ' + token['access_token']
         }
 
-        url = 'https://api.fitbit.com/1/user/-/body/weight/date/today/30d.json' + endpoint
+        url = 'https://api.fitbit.com/1/user/-/body/weight/date/today/30d.json'
 
         response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
-            return response
+            return response.json()
         elif response.status_code == 401:
             token = self.RefreshToken(token)
-            self.GetWeight(token, endpoint)
+            self.GetWeight(token)
         else:
             raise Exception("Action unsuccessful")
