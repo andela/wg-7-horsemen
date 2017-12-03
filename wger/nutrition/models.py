@@ -718,6 +718,12 @@ class MealConsumed(models.Model):
                                            verbose_name=_('Ingredient Consumed'),
                                            help_text=_('What was actually consumed by a user'))
 
+    def __str__(self):
+        '''
+        Return a more human-readable representation
+        '''
+        return u"{0} was consumed ".format(self.ingredient_consumed)
+
     def get_owner_object(self):
         '''
         Returns the object that has owner information
