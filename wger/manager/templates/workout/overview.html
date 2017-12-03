@@ -37,8 +37,10 @@
   <i class="glyphicon glyphicon-import"></i>
    {% trans "Import workout(s)" %}
 </a>
-<a href="{% url 'manager:workout:export_all'%}" class="btn btn-default btn-sm">
-    <i class="glyphicon glyphicon-export"></i>
-   {% trans "Export all" %}
-</a>
+  {% if workouts %}
+    <a href="{% url 'manager:workout:export_all'%}" class="btn btn-default btn-sm">
+        <i class="glyphicon glyphicon-export"></i>
+       {% trans "Export all" %}
+    </a>
+  {% endif %}
 {% endblock %}
