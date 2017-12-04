@@ -8,9 +8,9 @@ class FitBit:
 
     # App settings from fitbit as regards the app
     CLIENT_ID = '22CFSD'
-    CLIENT_SECRET = '024bcf57ba57cff6f13c14f8c3c2d53b'
+    CLIENT_SECRET = 'e59051dd78a808c292efdcc2dff50dbb'
     SCOPE = 'weight'
-    REDIRECT_URI = 'http://localhost:8000/en/dashboard'
+    REDIRECT_URI = 'http://localhost:8000/en/fitbit/fetch'
 
     # Authorization and authentication URIs
     AUTHORIZE_URI = 'https://www.fitbit.com/oauth2/authorize'
@@ -37,14 +37,13 @@ class FitBit:
 
         # Authentication header
         client_id = self.CLIENT_ID.encode('utf-8')
-        secret = self.CLIENT_SECRET.emcode('utf-8')
-        auth_code = base64.b64encode(client_id + b':' + secret)
+        secret = self.CLIENT_SECRET.encode('utf-8')
         headers = {
-            'Authorization': 'Basic ' + auth_code,
+            'Authorization': 'Basic MjJDRlNEOmU1OTA1MWRkNzhhODA4YzI5MmVmZGNjMmRmZjUwZGJi',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
-        # parameters for requesting tokens 
+        # parameters for requesting tokens
         params = {
             'code': code,
             'grant_type': 'authorization_code',
@@ -59,12 +58,13 @@ class FitBit:
             headers=headers)
 
         if response.status_code != 200:
-            raise Exception("Action unsuccessful")
+            raise Exception("Action unsuccessful " + str(response.status_code))
 
         # get the tokens
+        response = response.json()
         token = dict()
-        token['access_token'] = response.access_token
-        token['refresh_token'] = response.refresh_token
+        token['access_token'] = response['access_token']
+        token['refresh_token'] = response['refresh_token']
 
         return token
 
@@ -73,10 +73,9 @@ class FitBit:
 
         # authentication header
         client_id = self.CLIENT_ID.encode('utf-8')
-        secret = self.CLIENT_SECRET.emcode('utf-8')
-        auth_code = base64.b64encode(client_id + b':' + secret)
+        secret = self.CLIENT_SECRET.encode('utf-8')
         headers = {
-            'Authorization': 'Basic ' + auth_code,
+            'Authorization': 'Basic MjJDRlNEOmU1OTA1MWRkNzhhODA4YzI5MmVmZGNjMmRmZjUwZGJi',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
