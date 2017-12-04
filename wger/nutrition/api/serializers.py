@@ -21,6 +21,7 @@ from wger.nutrition.models import (
     IngredientWeightUnit,
     WeightUnit,
     MealItem,
+    MealConsumed,
     Meal,
     Ingredient
 )
@@ -73,7 +74,7 @@ class MealConsumedSerializer(serializers.ModelSerializer):
                                               queryset=Meal.objects.all())
 
     class Meta:
-        model = MealItem
+        model = MealConsumed
 
 
 class MealSerializer(serializers.ModelSerializer):
