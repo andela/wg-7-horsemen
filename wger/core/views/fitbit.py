@@ -91,7 +91,7 @@ class FitBit:
         if response.status_code != 200:
             raise Exception("Action unsuccessful")
 
-        # replace tokens 
+        # replace tokens
         token['access_token'] = response.access_token
         token['refresh_token'] = response.refresh_token
 
