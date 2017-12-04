@@ -25,7 +25,8 @@ from wger.nutrition.models import (
     IngredientWeightUnit,
     NutritionPlan,
     Meal,
-    MealItem
+    MealItem,
+    MealConsumed
 )
 from wger.utils.resources import UserObjectsOnlyAuthorization
 from wger.core.api.resources import LicenseResource, LanguageResource
@@ -170,3 +171,25 @@ class MealItemResource(ModelResource):
                      'meal': ALL_WITH_RELATIONS,
                      'order': ALL,
                      'weight_unit': ALL_WITH_RELATIONS}
+
+
+class MealConsumedResource(ModelResource):
+    '''
+    Resource for meals consumed
+    '''
+
+    meal = fields.ToOneField(MealResource, 'meal')
+
+    def authorized_read_list(self, object_list, bundle):
+        '''
+        Filter to own objects
+        '''
+        return object_list.filter(meal__plan__user=bundle.request.user)
+
+    class Meta:
+        queryset = MealConsumed.objects.all()
+        authentication = ApiKeyAuthentication()
+        authorization = UserObjectsOnlyAuthorization()
+        filtering = {'id': ALL,
+                     'ingredient_consumed': ALL,
+                     'meal': ALL_WITH_RELATIONS}
