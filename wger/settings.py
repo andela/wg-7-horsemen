@@ -18,7 +18,7 @@ MANAGERS = ADMINS
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-STATIC_URL = '/wger/software/static/'
+STATIC_URL = '/wger/static/'
 
 DATABASES = {
     'default': dj_database_url.config(default=config('DATABASE_URL'))
