@@ -65,6 +65,17 @@ class MealItemSerializer(serializers.ModelSerializer):
         model = MealItem
 
 
+class MealConsumedSerializer(serializers.ModelSerializer):
+    '''
+    MealConsumed serializer
+    '''
+    meal = serializers.PrimaryKeyRelatedField(label='Nutrition plan',
+                                              queryset=Meal.objects.all())
+
+    class Meta:
+        model = MealItem
+
+
 class MealSerializer(serializers.ModelSerializer):
     '''
     Meal serializer
