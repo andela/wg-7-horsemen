@@ -13,7 +13,8 @@
     "bower_components",
     "wger/static/bower_components",
     "test",
-    "tests"
+    "tests",
+    "wger/core/static/bower_components"
   ],
   "dependencies": {
     "components-font-awesome": "^4.7.0",
