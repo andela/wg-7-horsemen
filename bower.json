@@ -1,0 +1,32 @@
+{
+  "name": "wger",
+  "description": "Self hosted FLOSS fitness/workout and weight tracker",
+  "main": "wger",
+  "authors": [
+    "Chris-Maina <krismaish34@gmail.com>"
+  ],
+  "license": "AGPL-3.0",
+  "homepage": "https://github.com/andela/wg-7-horsemen",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "wger/static/bower_components",
+    "test",
+    "tests",
+    "wger/core/static/bower_components"
+  ],
+  "dependencies": {
+    "components-font-awesome": "^4.7.0",
+    "bootstrap": "^3.3.7",
+    "Sortable": "sortablejs#1.4.x",
+    "jquery": "2.1.x",
+    "d3": "^4.12.0",
+    "devbridge-autocomplete": "1.2.x",
+    "datatables": "DataTables#^1.10.16",
+    "metrics-graphics": "^2.11.0",
+    "tinymce": "^4.7.2",
+    "shariff": "^2.0.4",
+    "chart.js": "^2.7.1"
+  }
+}
