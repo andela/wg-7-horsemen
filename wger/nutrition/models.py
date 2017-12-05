@@ -593,6 +593,7 @@ class MealItem(models.Model):
                                     )
 
     order = models.IntegerField(verbose_name=_('Order'),
+                                null=True,
                                 blank=True,
                                 editable=False)
     amount = models.DecimalField(decimal_places=2,
