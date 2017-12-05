@@ -25,7 +25,11 @@ from wger.nutrition.models import (
     Ingredient,
     MealItem,
 <<<<<<< HEAD
+<<<<<<< HEAD
     MealConsumed
+=======
+    Meal
+>>>>>>> [Feature #152919284] Added new class of ModelForm to handle functionality of adding and meal item simultaneously with a meal.
 =======
     Meal
 >>>>>>> [Feature #152919284] Added new class of ModelForm to handle functionality of adding and meal item simultaneously with a meal.
@@ -160,6 +164,8 @@ class MealConsumedForm(forms.ModelForm):
     class Meta:
         model = MealConsumed
         fields = '__all__'
+
+
 class NewCreateMealForm(forms.ModelForm):
     '''This form does the following:
             # Adds fields(time,amount,ingredient,weight_unit) to the Meal ModelForm.
