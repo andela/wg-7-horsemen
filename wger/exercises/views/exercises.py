@@ -68,7 +68,8 @@ logger = logging.getLogger(__name__)
 
 
 class FilterLanguageForm(forms.Form):
-    languages_got = ModelChoiceField(queryset=Language.objects.all(), widget=forms.Select(attrs={"onChange":'refresh()'}))
+    languages_got = ModelChoiceField(queryset=Language.objects.all(
+    ), widget=forms.Select(attrs={"onChange": 'refresh()'}))
 
 
 class ExerciseListView(ListView):
@@ -80,17 +81,17 @@ class ExerciseListView(ListView):
     form_class = FilterLanguageForm
     template_name = 'exercise/overview.html'
     context_object_name = 'exercises'
-    
+
     def get(self, request, *args, **kwargs):
         language = request.GET.get('lang')
         self.object_list = self.get_queryset()
         context = self.get_context_data()
-        
+
         if not language:
             context['exercises'] = self.object_list
             used_language = translation.get_language().split('-')[0]
             context['shown_language'] = used_language
-        else:     
+        else:
             language_object = Language.objects.get(short_name=language)
             filtered_exercises = self.get_queryset(language)
             context['shown_language'] = language
@@ -109,7 +110,6 @@ class ExerciseListView(ListView):
             return Exercise.objects.accepted().filter(language=language_object.id) \
                 .order_by('category__id') \
                 .select_related()
-  
 
         languages = load_item_languages(LanguageConfig.SHOW_ITEM_EXERCISES)
         return Exercise.objects.accepted() \
