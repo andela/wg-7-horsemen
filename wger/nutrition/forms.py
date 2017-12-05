@@ -23,9 +23,10 @@ from wger.core.models import UserProfile
 from wger.nutrition.models import (
     IngredientWeightUnit,
     Ingredient,
-    MealItem
+    MealItem,
+    Meal
 )
-from wger.utils.widgets import Html5NumberInput
+from wger.utils.widgets import Html5NumberInput, Html5TimeInput
 
 
 logger = logging.getLogger(__name__)
@@ -146,3 +147,43 @@ class MealItemForm(forms.ModelForm):
         if ingredient_id:
             self.fields['weight_unit'].queryset = \
                 IngredientWeightUnit.objects.filter(ingredient_id=ingredient_id)
+
+class NewCreateMealForm(forms.ModelForm):
+    '''This form does the following:
+            # Adds fields(time,amount,ingredient,weight_unit) to the Meal ModelForm.
+            # Populate ingredient field's autocompletion data.
+            # Changes __init__ function of ModelForm to add ingredient weight_unit
+            to the weight_unit field. 
+    '''
+    time = forms.DateTimeField(
+        input_formats=['%H:%M'],
+        widget=Html5TimeInput,
+        required=False
+        )
+    amount = forms.DecimalField(
+        widget=Html5NumberInput
+    )
+    ingredient = forms.ModelChoiceField(
+        queryset=Ingredient.objects.all(),
+        widget=forms.HiddenInput
+        )
+    weight_unit = forms.ModelChoiceField(
+        queryset=IngredientWeightUnit.objects.none(),
+        empty_label="g",
+        required=False
+        )
+    class Meta:
+        model=Meal
+        fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super(NewCreateMealForm, self).__init__(*args, **kwargs)
+        
+        ingredient_id = None
+
+        if kwargs.get('instance'):
+            ingredient_id=kwargs['instance'].ingredient_id
+        if kwargs.get('data'):
+            ingredient_id=kwargs['data']['ingredient']
+        if ingredient_id:
+            self.fields['weight_unit'].queryset = IngredientWeightUnit.objects.filter(ingredient_id=ingredient_id)
+
