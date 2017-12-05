@@ -165,7 +165,8 @@ class IngredientMixin(WgerFormMixin):
               'fibres',
               'sodium',
               'license',
-              'license_author']
+              'license_author',
+              'language']
 
 
 class IngredientEditView(IngredientMixin, LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
