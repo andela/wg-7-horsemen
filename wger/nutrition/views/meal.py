@@ -51,6 +51,11 @@ class MealCreateView(WgerFormMixin, CreateView):
         return super(MealCreateView, self).form_valid(form)
 
     def get_success_url(self):
+        """ This method does the following:
+            # Gets data and checks for ingredient in db.
+            # Creates a meal item for New Meal.
+            # Checks for weight_unit specification and adds that to the meal item.
+        """
         data = self.request.POST
         ingredient = Ingredient.objects.get(id=data['ingredient'])
         meal_item = MealItem.objects.create(
