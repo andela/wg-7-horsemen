@@ -69,10 +69,11 @@ class IngredientListView(ListView):
         language = self.request.GET.get('lang')
         if language:
             language_object = Language.objects.get(short_name=language)
-            filtered_ingredients = (Ingredient.objects.filter(status__in=Ingredient.INGREDIENT_STATUS_OK)
-                                .filter(language=language_object.id)
-                                .only('id', 'name'))
-            
+            filtered_ingredients = (Ingredient.objects
+                                    .filter(status__in=Ingredient.INGREDIENT_STATUS_OK)
+                                    .filter(language=language_object.id)
+                                    .only('id', 'name'))
+
             if filtered_ingredients:
                 return filtered_ingredients
             else:
@@ -90,7 +91,7 @@ class IngredientListView(ListView):
         context = super(IngredientListView, self).get_context_data(**kwargs)
         all_languages = Language.objects.all()
         language = self.request.GET.get('lang')
-        if language: 
+        if language:
             context['shown_language'] = language
         else:
             used_language = translation.get_language().split('-')[0]
@@ -165,8 +166,7 @@ class IngredientMixin(WgerFormMixin):
               'fibres',
               'sodium',
               'license',
-              'license_author',
-              'language']
+              'license_author']
 
 
 class IngredientEditView(IngredientMixin, LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
