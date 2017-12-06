@@ -30,7 +30,8 @@ from wger.nutrition.views import (
     meal,
     meal_item,
     unit,
-    unit_ingredient
+    unit_ingredient,
+    meal_consumed
 )
 
 # sub patterns for nutritional plans
@@ -89,6 +90,18 @@ patterns_meal_item = [
         name='delete'),
 ]
 
+# sub patterns for meal consumed
+patterns_meal_consumed = [
+    url(r'^(?P<meal_id>\d+)/consumed/add/$',
+        login_required(meal_consumed.MealConsumedCreateView.as_view()),
+        name='add'),
+    url(r'^(?P<pk>\d+)/edit/$',
+        login_required(meal_consumed.MealConsumedEditView.as_view()),
+        name='edit'),
+    url(r'^(?P<meal_consumed_id>\d+)/delete/$',
+        meal_consumed.delete_meal_consumed,
+        name='delete'),
+]
 
 # sub patterns for ingredient
 patterns_ingredient = [
@@ -185,6 +198,7 @@ urlpatterns = [
     url(r'^', include(patterns_plan, namespace="plan")),
     url(r'^meal/', include(patterns_meal, namespace="meal")),
     url(r'^meal/item/', include(patterns_meal_item, namespace="meal_item")),
+    url(r'^meal/consumed/', include(patterns_meal_consumed, namespace="meal_consumed")),
     url(r'^ingredient/', include(patterns_ingredient, namespace="ingredient")),
     url(r'^unit/', include(patterns_weight_unit, namespace="weight_unit")),
     url(r'^unit-to-ingredient/', include(patterns_unit_ingredient, namespace="unit_ingredient")),

@@ -21,6 +21,7 @@ from wger.nutrition.models import (
     IngredientWeightUnit,
     WeightUnit,
     MealItem,
+    MealConsumed,
     Meal,
     Ingredient
 )
@@ -63,6 +64,17 @@ class MealItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MealItem
+
+
+class MealConsumedSerializer(serializers.ModelSerializer):
+    '''
+    MealConsumed serializer
+    '''
+    meal = serializers.PrimaryKeyRelatedField(label='Nutrition plan',
+                                              queryset=Meal.objects.all())
+
+    class Meta:
+        model = MealConsumed
 
 
 class MealSerializer(serializers.ModelSerializer):

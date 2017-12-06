@@ -25,6 +25,7 @@ from wger.nutrition.api.serializers import (
     IngredientWeightUnitSerializer,
     WeightUnitSerializer,
     MealItemSerializer,
+    MealConsumedSerializer,
     MealSerializer,
     IngredientSerializer
 )
@@ -274,3 +275,32 @@ class MealItemViewSet(WgerOwnerObjectModelViewSet):
         Return an overview of the nutritional plan's values
         '''
         return Response(MealItem.objects.get(pk=pk).get_nutritional_values())
+
+
+class MealConsumedViewSet(WgerOwnerObjectModelViewSet):
+    '''
+    API endpoint for meal consumed objects
+    '''
+    serializer_class = MealConsumedSerializer
+    is_private = True
+    ordering_fields = '__all__'
+    filter_fields = ('ingredient_consumed',
+                     'meal')
+
+    def get_queryset(self):
+        '''
+        Only allow access to appropriate objects
+        '''
+        return MealItem.objects.filter(meal__plan__user=self.request.user)
+
+    def perform_create(self, serializer):
+        '''
+        Set the order
+        '''
+        serializer.save(order=1)
+
+    def get_owner_objects(self):
+        '''
+        Return objects to check for ownership permission
+        '''
+        return [(Meal, 'meal')]

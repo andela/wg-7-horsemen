@@ -23,7 +23,8 @@ from wger.core.models import UserProfile
 from wger.nutrition.models import (
     IngredientWeightUnit,
     Ingredient,
-    MealItem
+    MealItem,
+    MealConsumed
 )
 from wger.utils.widgets import Html5NumberInput
 
@@ -146,3 +147,12 @@ class MealItemForm(forms.ModelForm):
         if ingredient_id:
             self.fields['weight_unit'].queryset = \
                 IngredientWeightUnit.objects.filter(ingredient_id=ingredient_id)
+
+
+class MealConsumedForm(forms.ModelForm):
+
+    ingredient_consumed = forms.CharField(max_length=2000, widget=forms.Textarea())
+
+    class Meta:
+        model = MealConsumed
+        fields = '__all__'

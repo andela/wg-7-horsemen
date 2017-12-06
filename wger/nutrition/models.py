@@ -699,3 +699,33 @@ def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **k
         cache.delete(cache_mapper.get_nutrition_info_key(sender_instance.get_owner_object().id))
     elif isinstance(sender_instance, NutritionPlan):
         cache.delete(cache_mapper.get_nutrition_info_key(sender_instance.id))
+
+
+@python_2_unicode_compatible
+class MealConsumed(models.Model):
+    '''
+    An consumed of a meal for a nutrition plan
+    '''
+
+    meal = models.ForeignKey(Meal,
+                             verbose_name=_('Nutrition plan'),
+                             editable=False)
+
+    ingredient_consumed = models.TextField(max_length=2000,
+                                           blank=True,
+                                           null=True,
+                                           default='something',
+                                           verbose_name=_('Ingredient Consumed'),
+                                           help_text=_('What was actually consumed by a user'))
+
+    def __str__(self):
+        '''
+        Return a more human-readable representation
+        '''
+        return u"{0} was consumed ".format(self.ingredient_consumed)
+
+    def get_owner_object(self):
+        '''
+        Returns the object that has owner information
+        '''
+        return self.meal.plan
