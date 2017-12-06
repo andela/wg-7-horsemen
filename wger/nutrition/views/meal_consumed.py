@@ -100,4 +100,4 @@ def delete_meal_consumed(request, meal_consumed_id):
         meal_consumed.delete()
         return HttpResponseRedirect(reverse('nutrition:plan:view', kwargs={'id': plan.id}))
     else:
-        return HttpResponseForbidden()    
+        return HttpResponseForbidden()
