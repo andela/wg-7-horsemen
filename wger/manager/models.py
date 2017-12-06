@@ -106,13 +106,6 @@ class Workout(models.Model):
     def get_workout_session(self, date=None):
         '''
          Returns the corresponding workout session
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
- 
->>>>>>> [Chore ##152919278] Set Workout Log as a foreign key in the  work session table.
-=======
->>>>>>> [Chore ##152919278] Make changes to comply with pep8 conventions.
          :return the WorkoutSession object or None if nothing was found
         '''
         if not date:
@@ -863,22 +856,12 @@ class WorkoutSession(models.Model):
     Time the workout session ended
     '''
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> [Chore ##152919278] Make changes to comply with pep8 conventions.
     workout_log = models.ForeignKey(WorkoutLog, verbose_name=_('Workout Log'),
                                     blank=True, null=True)
 
     '''
     Workout log to act as a foreign key
     '''
-<<<<<<< HEAD
-=======
-    workout_log = models.ForeignKey(WorkoutLog, verbose_name=_('Workout Log'), blank=True, null=True)
->>>>>>> [Chore ##152919278] Set Workout Log as a foreign key in the  work session table.
-=======
->>>>>>> [Chore ##152919278] Make changes to comply with pep8 conventions.
 
     def __str__(self):
         '''
