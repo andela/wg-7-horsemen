@@ -123,6 +123,85 @@ class AddWorkoutTestCase(WorkoutManagerTestCase):
         self.user_logout()
 
 
+class ExportWorkoutTestCase(WorkoutManagerTestCase):
+    '''
+    Tests exporting a Workout
+    '''
+
+    def export_workout(self):
+        '''
+        Helper function to test exporting workouts
+        '''
+
+        # Create a workout
+        self.client.get(reverse('manager:workout:add'))
+
+        ui_response = self.client.get(reverse('manager:workout:export', kwargs={'pk': 1}))
+
+        # Test that the export form was rendered
+        self.assertEqual(ui_response.status_code, 200)
+        self.assertIn(
+            b'<input type="submit" value="Export" id="form-save" class="btn btn-default btn-block"',
+            ui_response.content
+        )
+
+        response = self.client.post(reverse('manager:workout:export', kwargs={'pk': 1}))
+        # Test status
+        self.assertEqual(response.status_code, 200)
+        # Test content type
+        self.assertIn(
+            b'"model": "manager.workout"',
+            response.content
+        )
+
+    def test_export_workout_logged_in(self):
+        '''
+        Test creating a workout a logged in user
+        '''
+
+        self.user_login()
+        self.export_workout()
+        self.user_logout()
+
+
+class ExportAllWorkoutsTestCase(WorkoutManagerTestCase):
+    '''
+    Tests exporting all Workouts
+    '''
+
+    def export_all_workouts(self):
+        '''
+        Helper function to test exporting all workouts
+        '''
+
+        # Create a workout
+        self.client.get(reverse('manager:workout:add'))
+
+        ui_response = self.client.get(reverse('manager:workout:export_all'))
+
+        # Test that the export form was rendered
+        self.assertEqual(ui_response.status_code, 200)
+        self.assertIn(
+            b'<input type="submit" value="Export" id="form-save" class="btn btn-default btn-block"',
+            ui_response.content
+        )
+
+        response = self.client.post(reverse('manager:workout:export_all'))
+        # Test status
+        self.assertEqual(response.status_code, 200)
+        # Test content type
+        self.assertIn(b'"model": "manager.workout"', response.content)
+
+    def test_export_workout_logged_in(self):
+        '''
+        Test creating a workout a logged in user
+        '''
+
+        self.user_login()
+        self.export_all_workouts()
+        self.user_logout()
+
+
 class DeleteTestWorkoutTestCase(WorkoutManagerDeleteTestCase):
     '''
     Tests deleting a Workout
