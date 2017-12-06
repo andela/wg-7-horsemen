@@ -103,6 +103,21 @@ class Workout(models.Model):
         '''
         return self
 
+    def get_workout_session(self, date=None):
+        '''
+         Returns the corresponding workout session
+         :return the WorkoutSession object or None if nothing was found
+        '''
+        if not date:
+            date = self.date
+        try:
+            try:
+                return WorkoutSession.objects.filter(user=self.user).get(workout_log=self)
+            except WorkoutSession.DoesNotExist:
+                return WorkoutSession.objects.filter(user=self.user).get(date=date)
+        except WorkoutSession.DoesNotExist:
+                return None
+
     @property
     def canonical_representation(self):
         '''
@@ -839,6 +854,13 @@ class WorkoutSession(models.Model):
                                 null=True)
     '''
     Time the workout session ended
+    '''
+
+    workout_log = models.ForeignKey(WorkoutLog, verbose_name=_('Workout Log'),
+                                    blank=True, null=True)
+
+    '''
+    Workout log to act as a foreign key
     '''
 
     def __str__(self):
