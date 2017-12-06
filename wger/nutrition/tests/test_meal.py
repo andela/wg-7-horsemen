@@ -61,10 +61,10 @@ class AddMealTestCase(WorkoutManagerAddTestCase):
             'ingredient': 1
             }
     data_ignore = (
-        'ingredient','amount','weight_unit','time'
+        'ingredient', 'amount', 'weight_unit', 'time'
     )
-    user_fail='admin'
-    user_success='test'
+    user_fail = 'admin'
+    user_success = 'test'
 
 
 class PlanOverviewTestCase(WorkoutManagerTestCase):

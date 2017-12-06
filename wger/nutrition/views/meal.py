@@ -23,7 +23,7 @@ from django.utils.translation import ugettext_lazy
 
 from django.views.generic import CreateView, UpdateView
 
-from wger.nutrition.models import NutritionPlan, Meal,Ingredient,MealItem
+from wger.nutrition.models import NutritionPlan, Meal, Ingredient, MealItem
 from wger.utils.generic_views import WgerFormMixin
 from wger.nutrition.forms import NewCreateMealForm
 
@@ -59,8 +59,8 @@ class MealCreateView(WgerFormMixin, CreateView):
         data = self.request.POST
         ingredient = Ingredient.objects.get(id=data['ingredient'])
         meal_item = MealItem.objects.create(
-            meal = self.object,
-            amount = data['amount'],
+            meal=self.object,
+            amount=data['amount'],
             ingredient=ingredient
         )
         if 'weight_unit' in data:
