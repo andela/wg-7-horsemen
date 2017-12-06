@@ -599,7 +599,7 @@ class MealItem(models.Model):
                                  max_digits=6,
                                  verbose_name=_('Amount'),
                                  validators=[MinValueValidator(1),
-                                             MaxValueValidator(1000)])                                   
+                                             MaxValueValidator(1000)])
 
     def __str__(self):
         '''
@@ -701,7 +701,6 @@ def delete_nutrition_info_change_on_nutrition_plan_meal_or_meal_item(sender, **k
         cache.delete(cache_mapper.get_nutrition_info_key(sender_instance.id))
 
 
-        
 @python_2_unicode_compatible
 class MealConsumed(models.Model):
     '''
@@ -717,6 +716,4 @@ class MealConsumed(models.Model):
                                            null=True,
                                            default='something',
                                            verbose_name=_('Ingredient Consumed'),
-                                           help_text=_('What was actually consumed by a user'))                                     
-
-
+                                           help_text=_('What was actually consumed by a user'))

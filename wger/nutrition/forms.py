@@ -125,7 +125,7 @@ class MealItemForm(forms.ModelForm):
                                          empty_label="g",
                                          required=False)
     ingredient = forms.ModelChoiceField(queryset=Ingredient.objects.all(),
-                                        widget=forms.HiddenInput)                                 
+                                        widget=forms.HiddenInput)
 
     class Meta:
         model = MealItem
@@ -150,7 +150,7 @@ class MealItemForm(forms.ModelForm):
 
 
 class MealConsumedForm(forms.ModelForm):
-   
+
     ingredient_consumed = forms.CharField(max_length=2000, widget=forms.Textarea())
 
     class Meta:
