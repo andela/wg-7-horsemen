@@ -30,7 +30,8 @@ from django.forms import (
     DecimalField,
     CharField,
     widgets,
-    ModelChoiceField
+    ModelChoiceField,
+    FileField
 )
 
 from wger.core.models import (
@@ -68,6 +69,17 @@ class WorkoutForm(ModelForm):
     class Meta:
         model = Workout
         exclude = ('user',)
+
+
+class WorkoutExportForm(Form):
+    name = CharField(max_length=100,
+                     help_text=_('Give a title to this workout export.'),
+                     required=False)
+
+
+class WorkoutImportForm(Form):
+    import_file = FileField(help_text=_('Select a workout file to import.'),
+                            required=True)
 
 
 class WorkoutCopyForm(Form):
