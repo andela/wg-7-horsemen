@@ -24,15 +24,8 @@ from wger.nutrition.models import (
     IngredientWeightUnit,
     Ingredient,
     MealItem,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    MealConsumed
-=======
+    MealConsumed,
     Meal
->>>>>>> [Feature #152919284] Added new class of ModelForm to handle functionality of adding and meal item simultaneously with a meal.
-=======
-    Meal
->>>>>>> [Feature #152919284] Added new class of ModelForm to handle functionality of adding and meal item simultaneously with a meal.
 )
 from wger.utils.widgets import Html5NumberInput, Html5TimeInput
 
