@@ -1,20 +1,21 @@
 import requests
 import urllib
 import base64
+import os
 
 
 class FitBit:
     """Class to handle all fitbit operation"""
 
     # App settings from fitbit as regards the app
-    CLIENT_ID = '22CFSD'
-    CLIENT_SECRET = 'e59051dd78a808c292efdcc2dff50dbb'
-    SCOPE = 'weight'
-    REDIRECT_URI = 'http://localhost:8000/en/fitbit/fetch'
+    CLIENT_ID = os.environ.get('CLIENT_ID')
+    CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
+    SCOPE = os.environ.get('SCOPE')
+    REDIRECT_URI = os.environ.get('REDIRECT_URI')
 
     # Authorization and authentication URIs
-    AUTHORIZE_URI = 'https://www.fitbit.com/oauth2/authorize'
-    TOKEN_REQUEST_URI = 'https://api.fitbit.com/oauth2/token'
+    AUTHORIZE_URI = os.environ.get('AUTHORIZE_URI')
+    TOKEN_REQUEST_URI = os.environ.get("TOKEN_REQUEST_URI")
 
     def ComposeAuthorizationuri(self):
         """Method helps to compose authorization uri with the intended params"""
@@ -39,7 +40,7 @@ class FitBit:
         client_id = self.CLIENT_ID.encode('utf-8')
         secret = self.CLIENT_SECRET.encode('utf-8')
         headers = {
-            'Authorization': 'Basic MjJDRlNEOmU1OTA1MWRkNzhhODA4YzI5MmVmZGNjMmRmZjUwZGJi',
+            'Authorization': os.environ.get('Authorization'),
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
@@ -75,7 +76,7 @@ class FitBit:
         client_id = self.CLIENT_ID.encode('utf-8')
         secret = self.CLIENT_SECRET.encode('utf-8')
         headers = {
-            'Authorization': 'Basic MjJDRlNEOmU1OTA1MWRkNzhhODA4YzI5MmVmZGNjMmRmZjUwZGJi',
+            'Authorization': os.environ.get('Authorization'),
             'Content-Type': 'application/x-www-form-urlencoded'
         }
 
@@ -104,8 +105,7 @@ class FitBit:
             'Authorization': 'Bearer ' + token['access_token']
         }
 
-        url = 'https://api.fitbit.com/1/user/-/body/weight/date/today/30d.json'
-
+        url = os.environ.get('url')
         response = requests.get(url, headers=headers)
 
         if response.status_code == 200:
