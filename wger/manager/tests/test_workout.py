@@ -202,6 +202,38 @@ class ExportAllWorkoutsTestCase(WorkoutManagerTestCase):
         self.user_logout()
 
 
+class ImportWorkoutsTestCase(WorkoutManagerTestCase):
+    '''
+    Tests importing Workouts
+    '''
+
+    def import_workouts(self):
+        '''
+        Helper function to test importing workouts
+        '''
+
+        # Create a workout
+        self.client.get(reverse('manager:workout:add'))
+
+        ui_response = self.client.get(reverse('manager:workout:wk_import'))
+
+        # Test that the import form was rendered
+        self.assertEqual(ui_response.status_code, 200)
+        self.assertIn(
+            b'<input type="submit" value="Import" id="form-save" class="btn btn-default btn-block"',
+            ui_response.content
+        )
+
+    def test_import_workout_logged_in(self):
+        '''
+        Test creating a workout a logged in user
+        '''
+
+        self.user_login()
+        self.import_workouts()
+        self.user_logout()
+
+
 class DeleteTestWorkoutTestCase(WorkoutManagerDeleteTestCase):
     '''
     Tests deleting a Workout
