@@ -17,7 +17,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wger.core.models import License
+from wger.core.models import License, Author
 
 
 '''
@@ -38,7 +38,9 @@ class AbstractLicenseModel(models.Model):
                                 default=2)
     '''The item's license'''
 
-    license_author = models.CharField(verbose_name=_('Author'),
+    license_author = models.ForeignKey(Author,
+                                      to_field='name',
+                                      verbose_name=_('Author'),
                                       max_length=50,
                                       blank=True,
                                       null=True,
