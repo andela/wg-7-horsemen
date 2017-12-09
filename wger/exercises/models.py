@@ -47,7 +47,6 @@ from wger.utils.cache import (
 
 logger = logging.getLogger(__name__)
 
-
 @python_2_unicode_compatible
 class Muscle(models.Model):
     '''
