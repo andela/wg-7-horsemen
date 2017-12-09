@@ -32,6 +32,17 @@ from wger.utils.units import AbstractWeight
 
 from wger.weight.models import WeightEntry
 
+@python_2_unicode_compatible
+class Author(models.Model):
+    '''
+    Owner of exercise license.
+    '''
+    name = models.CharField(max_length=256,
+                            serialize=True,
+                            unique=True,
+                            verbose_name=_('name'),)
+    def __str__(self):
+        return self.name
 
 @python_2_unicode_compatible
 class Author(models.Model):
