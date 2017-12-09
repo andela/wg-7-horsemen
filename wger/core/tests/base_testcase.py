@@ -206,7 +206,7 @@ class WorkoutManagerTestCase(BaseTestCase, TestCase):
         elif current_field_class in ('ImageFieldFile', 'FieldFile'):
             self.assertEqual(os.path.basename(field.name), os.path.basename(value.name))
 
-        # Other objects (from foreign keys), check the ID
+        # Other objects (from foreign keys), check the ID or name
         else:
             try:
                 self.assertEqual(field.id, value)
