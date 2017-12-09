@@ -32,6 +32,7 @@ from wger.utils.units import AbstractWeight
 
 from wger.weight.models import WeightEntry
 
+
 @python_2_unicode_compatible
 class Author(models.Model):
     '''
@@ -41,8 +42,10 @@ class Author(models.Model):
                             serialize=True,
                             unique=True,
                             verbose_name=_('name'),)
+
     def __str__(self):
         return self.name
+
 
 @python_2_unicode_compatible
 class Language(models.Model):
