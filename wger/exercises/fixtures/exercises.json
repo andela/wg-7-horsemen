@@ -4752,24 +4752,6 @@
         "model": "exercises.exercise"
     },
     {
-        "pk": 235,
-        "fields": {
-            "license_author": "\u0432\u0432\u0432",
-            "status": "2",
-            "language": 5,
-            "muscles_secondary": [],
-            "description": "<p>\u0444\u044b\u0432 \u0444\u044b\u0432\u044b\u0444\u044b\u0444 \u0432\u044b</p>",
-            "equipment": [],
-            "creation_date": "2014-03-27",
-            "category": 8,
-            "uuid": "340ce1d3-fa8f-417d-8bda-abcc486aef77",
-            "muscles": [],
-            "license": 1,
-            "name": "\u0412\u0435\u043b\u043e\u0442\u0440\u0435\u043d\u0430\u0436\u043e\u0440"
-        },
-        "model": "exercises.exercise"
-    },
-    {
         "pk": 236,
         "fields": {
             "license_author": "wger.de",
