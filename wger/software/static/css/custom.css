@@ -29,8 +29,6 @@ section#services {
   margin-top:100px;  
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
-    color: white;
-    background-color: #1a3c6e;
-    border-color: #1a3c6e;
+.btn-xl {
+    padding: 10px 30px;
 }
