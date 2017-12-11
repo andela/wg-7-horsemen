@@ -126,11 +126,6 @@
             </div>
             <div class="row">
                     <div class="col-lg-12 text-center floater">
-                            <!-- <ul class="nav navbar-nav navbar-center">
-                                    <li class="page-scroll btn btn-xl"><a  href="#">Sign Up</a></li>
-                                    <li><a  href="#">Sign In</a></li>
-                                    <li><a class="page-scroll btn btn-xl" href="#">About</a></li>
-                                  </ul> -->
                                   {% if allow_guest_users and not user.is_authenticated %}
                                   <a href="{% url 'core:user:demo-entries' %}" class="page-scroll btn btn-xl" rel="nofollow">
                                       {% trans "Try it now" %}
