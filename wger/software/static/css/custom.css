@@ -14,3 +14,17 @@ section#services {
   .text-muted-custom {
     color: #c7c3c3;
   }
+  @media (min-width: 768px) {
+    .navbar-nav.navbar-center {
+      position: absolute;
+      left: 50%;
+      transform: translatex(-50%);
+    }
+  }
+
+.floater  {
+  position: relative; 
+  height: 100px; 
+  /* top: 100%; */
+  margin-top:100px;  
+}
