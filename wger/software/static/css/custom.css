@@ -1,5 +1,5 @@
 section#services {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/main.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/custom/man_woman_cycling.jpg');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -9,4 +9,8 @@ section#services {
     -o-background-size: cover;
     text-align: center;
     color: white;
+  }
+
+  .text-muted-custom {
+    color: #c7c3c3;
   }
