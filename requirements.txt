@@ -34,3 +34,6 @@ django-cors-headers
 
 # Python3 compatibility
 six
+
+# Social login module
+social-auth-app-django==2.0.0
