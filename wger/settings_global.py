@@ -88,8 +88,7 @@ INSTALLED_APPS = (
     'djangobower',
 
     #social login app for social authenication
-    'social_django',  
-
+    'social_django',
 )
 
 # added list of external libraries to be installed by bower
@@ -133,12 +132,12 @@ MIDDLEWARE_CLASSES = (
     'django_mobile.middleware.SetFlavourMiddleware',
 
     #Added social authenication middleware class
-    'social_django.middleware.SocialAuthExceptionMiddleware', 
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
     #social authenication backends for google, twitter and facebook
-    'social_core.backends.google.GoogleOAuth2', 
+    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GoogleOAuth',
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
@@ -170,8 +169,8 @@ TEMPLATES = [
                 # Breadcrumbs
                 'django.template.context_processors.request',
 
-                #social authenication 
-                'social_django.context_processors.backends',  
+                #social authenication
+                'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
             'loaders': [
@@ -391,7 +390,7 @@ WGER_SETTINGS = {
 
 SOCIAL_AUTH_TWITTER_KEY = os.getenv('SOCIAL_AUTH_TWITTER_KEY')
 SOCIAL_AUTH_TWITTER_SECRET = os.getenv('SOCIAL_AUTH_TWITTER_SECRET')
-SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')  
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
