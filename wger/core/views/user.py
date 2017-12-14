@@ -82,6 +82,7 @@ def login(request):
                             extra_context=context)
 
 
+# view to Delete user account
 @login_required()
 def delete(request, user_pk=None):
     '''
@@ -307,6 +308,7 @@ def preferences(request):
         return render(request, 'user/preferences.html', template_data)
 
 
+# view to deactivate user
 class UserDeactivateView(LoginRequiredMixin,
                          WgerMultiplePermissionRequiredMixin,
                          RedirectView):
@@ -340,6 +342,7 @@ class UserDeactivateView(LoginRequiredMixin,
         return reverse('core:user:overview', kwargs=({'pk': pk}))
 
 
+# view to activate user
 class UserActivateView(LoginRequiredMixin,
                        WgerMultiplePermissionRequiredMixin,
                        RedirectView):
