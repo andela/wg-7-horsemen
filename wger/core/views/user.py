@@ -511,8 +511,11 @@ class UserListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
                'members': []}
 
         for u in User.objects.select_related('usercache', 'userprofile__gym').all():
-            out['members'].append({'obj': u,
-                                   'last_log': u.usercache.last_activity})
+            try:
+                out['members'].append({'obj': u,
+                                       'last_log': u.usercache.last_activity})
+            except User.usercache.RelatedObjectDoesNotExist:
+                continue
 
         return out
 
