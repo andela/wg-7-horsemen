@@ -68,7 +68,7 @@ def comparison(request, username=None):
     Analysis page
     '''
     users = list(User.objects.all())
-    
+
     ctx = {
         "users": users,
     }
