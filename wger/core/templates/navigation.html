@@ -151,6 +151,9 @@
                             </ul>
                         </li>
 
+
+
+
                         {#                     #}
                         {# Options and contact #}
                         {#                     #}
@@ -199,6 +202,18 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{% url 'core:user:preferences' %}">{% trans "My preferences" %}</a>
+                                    </li>
+                                    {#          #}
+                                    {# Users Graphs #}
+                                    {#          #}
+                                    <li {% if active_tab == 'user' %}class="active"{% endif %}>
+                                        <a href="{% url 'core:comparison' %}">
+                                            {% if not user.is_authenticated %}
+                                                {% trans "Features" %}
+                                            {% else %}
+                                                {% trans "Comparisons" %}
+                                            {% endif %}
+                                        </a>
                                     </li>
                                     {% if not trainer_identity %}
                                     <li class="divider"></li>
