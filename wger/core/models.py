@@ -524,8 +524,10 @@ class DaysOfWeek(models.Model):
     Model for the days of the week
 
     This model is needed so that 'Day' can have multiple days of the week selected
+    Model has been extended by horsemen to accomodate different period types.
     '''
 
+    period_type = models.CharField(max_length=9, null=True, blank=True)
     day_of_week = models.CharField(max_length=9,
                                    verbose_name=_('Day of the week'))
 
