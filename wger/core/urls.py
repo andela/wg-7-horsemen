@@ -197,6 +197,9 @@ urlpatterns = [
     #workout graphs page
     url(r'^comparison$', misc.comparison, name='comparison'),
 
+    #workout graphs page
+    url(r'^comparison$', misc.comparison, name='comparison'),
+
     # Others
     url(r'^about$',
         TemplateView.as_view(template_name="misc/about.html"),
