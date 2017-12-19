@@ -194,6 +194,9 @@ urlpatterns = [
     url(r'^fitbit/login', misc.fitbitLogin, name="fitbit-login"),
     url(r'^fitbit/fetch', misc.fitbitFetch, name="fitbit-fetch"),
 
+    #workout graphs page
+    url(r'^comparison$', misc.comparison, name='comparison'),
+
     # Others
     url(r'^about$',
         TemplateView.as_view(template_name="misc/about.html"),
