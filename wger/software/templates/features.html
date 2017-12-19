@@ -18,44 +18,15 @@
 {# Content #}
 {#         #}
 {% block content %}
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-heading">{% trans "Welcome to wger" %}</div>
-                <div class="intro-lead-in">{% trans "Your body." %}</div>
-                <div class="intro-lead-in">{% trans "Your workouts." %}</div>
-                <div class="intro-lead-in">{% trans "Your data." %}</div>
-                <div class="intro-lead-in">{% trans "Your progress." %}</div>
-                {% if allow_guest_users and not user.is_authenticated %}
-                    <a href="{% url 'core:user:demo-entries' %}" class="page-scroll btn btn-xl" rel="nofollow" style="margin-top: 1em;">
-                        {% trans "Try it now" %}
-                    </a>
-                {% endif %}
-
-                {% if not user.is_authenticated or user.userprofile.is_temporary %}
-                    {% if allow_registration %}
-                        <a href="{% url 'core:user:registration' %}" class="page-scroll btn btn-xl" style="margin-top: 1em;">
-                            {% trans "Register" %}
-                        </a>
-                    {% endif %}
-
-                    <a href="{% url 'core:user:login' %}" class="page-scroll btn btn-xl" style="margin-top: 1em;">
-                        {% trans "Login" %}
-                    </a>
-                {% endif %}
-            </div>
-        </div>
-    </header>
-
     <!-- Services Section -->
     <section id="services" class="bg-darkest-gray">
-        <div class="container">
+        <div class="container">   
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-light">{% trans "Your advantages" %}</h2>
-                    <h3 class="section-subheading text-muted">
+                    <h2 class="section-heading text-light">{% trans "Welcome To Wger" %}</h2>
+                    <h3 class="section-subheading text-muted-custom">
                         {% blocktrans trimmed %}
-                            wger Workout Manager is a free, open source web application that manages
+                            WGER Workout Manager is a free, open source web application that manages
                             your exercises, workouts and nutrition. It started as a pet project of
                             mine to replace my growing collection of different spreadsheets, but it
                             has become something other people could also find useful.
@@ -64,13 +35,13 @@
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-heartbeat fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading text-light">{% trans "Workouts" %}</h4>
-                    <p class="text-muted">
+                    <p class="text-muted-custom">
                         {% blocktrans trimmed %}
                             You can create and manage flexible workout routines for any goals you
                             have. Select exactly which exercises you'll do and how many repetitions,
@@ -79,13 +50,13 @@
                         {% endblocktrans %}
                     </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-cutlery fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading text-light">{% trans "Nutrition" %}</h4>
-                    <p class="text-muted">
+                    <p class="text-muted-custom">
                         {% blocktrans trimmed %}
                             Create your personal diet plan by creating as many meals with as many
                             different ingredients as you need. The application will calculate the
@@ -94,13 +65,13 @@
                         {% endblocktrans %}
                     </p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-book fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading text-light">{% trans 'Diary' %}</h4>
-                    <p class="text-muted">
+                    <p class="text-muted-custom">
                         {% blocktrans trimmed %}
                             Enter the weights and repetitions you did for each exercise to generate
                             diagrams that let you see at a glance how well you are doing. The raw
@@ -109,7 +80,42 @@
                         {% trans "You can also enter notes and a general impression (great, neutral, etc.)" %}
                     </p>
                 </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading text-light">{% trans 'Gym Management' %}</h4>
+                    <p class="text-muted-custom">
+                        {% blocktrans trimmed %}
+                        Use the application for your gym to manage its members, their workouts 
+                        and attendance. You can manage the members' contracts, keep notes and upload 
+                        any files you might need.
+                        {% endblocktrans %}
+                    </p>
+                </div>
             </div>
+            <div class="row">
+                    <div class="col-lg-12 text-center floater">
+                                  {% if allow_guest_users and not user.is_authenticated %}
+                                  <a href="{% url 'core:user:demo-entries' %}" class="page-scroll btn btn-xl" rel="nofollow">
+                                      {% trans "Try it now" %}
+                                  </a>
+                              {% endif %}
+              
+                              {% if not user.is_authenticated or user.userprofile.is_temporary %}
+                                  {% if allow_registration %}
+                                      <a href="{% url 'core:user:registration' %}" class="page-scroll btn btn-xl">
+                                          {% trans "Register" %}
+                                      </a>
+                                  {% endif %}
+              
+                                  <a href="{% url 'core:user:login' %}" class="page-scroll btn btn-xl">
+                                      {% trans "Login" %}
+                                  </a>
+                              {% endif %}
+                    </div>
+                </div>
         </div>
     </section>
 
