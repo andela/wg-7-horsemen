@@ -31,6 +31,7 @@ from django.db.models import Min
 from django.db.models import Max
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
+from django.contrib.auth.models import User
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -183,6 +184,23 @@ def get_weight_data(request, username=None):
     for i in weights:
         chart_data.append({'date': i.date,
                            'weight': i.weight})
+
+    # Return the results to the client
+    return Response(chart_data)
+
+
+@api_view(['GET'])
+def get_user_weight_data(request, username=None):
+    '''
+    Process the data to pass it to the JS libraries to generate an SVG image
+    '''
+    user = User.objects.filter(username=username)
+    weights = WeightEntry.objects.filter(user=user)
+
+    chart_data = []
+
+    for i in weights:
+        chart_data.append({'date': i.date, 'weight': i.weight})
 
     # Return the results to the client
     return Response(chart_data)
